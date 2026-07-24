@@ -1,11 +1,9 @@
-def saudacoes(nome):
-    import random
-    frases = ["Bom dia! Meu nome é " + nome + ". Como vai você?", "Ola!", "Oi, tudo bem?"]
-    print(frases[random.randint(0,2)])
+import random
+import re
 
-def recebeTexto():
-    texto = "Cliente: " + input("Cliente: ")
-    palavraProibida = [# Xingamentos leves
+# Lista de palavras proibidas
+PALAVRAS_PROIBIDAS = [
+    # Xingamentos leves
     "idiota", "burro", "otario", "otário", "babaca",
     "imbecil", "otaria", "otária", "palhaço", "palhaco",
     "trouxa", "retardado", "animal", "tapado",
@@ -38,35 +36,64 @@ def recebeTexto():
 
     # Conteúdo adulto
     "sexo", "porno", "pornografia",
-    "hentai", "onlyfans"]
+    "hentai", "onlyfans"
+]
 
-    for p in palavraProibida:
-        if p in texto:
-            print("Desculpe, mas não posso responder a isso.")
-            return texto
+
+def saudacoes(nome):
+    frases = [
+        f"Bom dia! Meu nome é {nome}. Como vai você?",
+        "Olá!",
+        "Oi, tudo bem?"
+    ]
+    print(random.choice(frases))
+
+
+def recebeTexto():
+    texto = "Cliente: " + input("Cliente: ").strip().lower()
+
+    for palavra in PALAVRAS_PROIBIDAS:
+        if re.search(rf"\b{re.escape(palavra)}\b", texto):
+            print("Maria: Desculpe, mas não posso responder esse tipo de mensagem.")
+            return None
+
+    return texto
+
 
 def buscaResposta(nome, texto):
-    with open("BaseDeConhecimento.txt", "a+") as conhecimento:
+    with open("BaseDeConhecimento.txt", "a+", encoding="utf-8") as conhecimento:
         conhecimento.seek(0)
+
+        # Encerrar chatbot
+        if texto.replace("Cliente: ", "").strip().lower() == "tchau":
+            return "fim"
+
         while True:
-            viu = conhecimento.readline()
-            if viu != "":
-                if texto.replace("Cliente: ","") == "Tchau":
-                    print(nome+ ": volte sempre!")
-                    return "fim"
-                elif viu.strip() == texto.strip():
-                    proximalinha = conhecimento.readline()
-                    if "Chatbot: " in proximalinha:
-                        return proximalinha
+            linha = conhecimento.readline()
+
+            if linha != "":
+                if linha.strip().lower() == texto.strip().lower():
+                    resposta = conhecimento.readline()
+
+                    if resposta.startswith("Chatbot:"):
+                        return resposta
+
             else:
-                print("Me desculpe, não sei o que falar")
-                conhecimento.write("\n" +" texto")
-                resposta_user = input("O que esperava?\n")
-                conhecimento.write("\n" + "Chatbot: " + resposta_user)
-                return "Hum..."
+                print("Maria: Não sei responder isso.")
+
+                conhecimento.write("\n" + texto)
+
+                resposta_usuario = input("Qual deveria ser a resposta? ")
+
+                conhecimento.write("\nChatbot: " + resposta_usuario)
+
+                return "Chatbot: Obrigado! Aprendi uma nova resposta."
+
 
 def exibeResposta(resposta, nome):
-    print(resposta.replace("Chatbot: ", nome))
     if resposta == "fim":
+        print(f"{nome}: Volte sempre!")
         return "fim"
+
+    print(resposta.replace("Chatbot:", nome + ":"))
     return "continua"
