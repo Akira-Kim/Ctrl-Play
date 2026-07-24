@@ -1,51 +1,84 @@
 oi;Olá! Como posso ajudar?
-olá;Olá! É um prazer conversar com você.
+olá;Olá! Como posso ajudar?
+ola;Olá! Como posso ajudar?
+oii;Olá! Como posso ajudar?
+e aí;Oi! Tudo bem?
+e ai;Oi! Tudo bem?
 bom dia;Bom dia! Espero que seu dia seja excelente.
 boa tarde;Boa tarde! Como posso ajudar?
 boa noite;Boa noite! Em que posso ajudar?
-e aí;Oi! Tudo bem?
-oii;Olá!
 tudo bem;Estou muito bem, obrigado por perguntar.
 como vai;Estou indo muito bem.
 como você está;Estou funcionando perfeitamente.
+como voce está;Estou funcionando perfeitamente.
+como voce esta;Estou funcionando perfeitamente.
+como você esta;Estou funcionando perfeitamente.
 quem é você;Sou um chatbot desenvolvido em Python.
+quem e voce;Sou um chatbot desenvolvido em Python.
 qual seu nome;Meu nome é Maria.
 quem criou você;Fui criado por um estudante de programação.
+quem criou voce;Fui criado por um estudante de programação.
 o que você faz;Converso e respondo perguntas.
+o que voce faz;Converso e respondo perguntas.
 você aprende;Sim, minha base de conhecimento pode crescer.
+voce aprende;Sim, minha base de conhecimento pode crescer.
 você é inteligente;Faço o melhor para responder corretamente.
+voce é inteligente;Faço o melhor para responder corretamente.
 você é humano;Não, sou um programa.
+voce é humano;Não, sou um programa.
 você sente emoções;Não, mas consigo compreender mensagens.
+voce sente emoções;Não, mas consigo compreender mensagens.
 qual sua idade;Programas não possuem idade.
 você gosta de conversar;Sim, conversar faz parte da minha função.
+voce gosta de conversar;Sim, conversar faz parte da minha função.
 obrigado;De nada!
 muito obrigado;Foi um prazer ajudar.
 valeu;Disponha!
 por favor;Claro!
 desculpe;Tudo bem, acontece.
 até logo;Até a próxima.
+ate logo;Até a próxima.
 adeus;Até mais!
 tchau;Volte sempre!
 
 o que é programação;Programação é criar instruções para um computador executar.
+o que e programação;Programação é criar instruções para um computador executar.
+o que e programacao;Programação é criar instruções para um computador executar.
 o que é algoritmo;Um algoritmo é uma sequência de passos para resolver um problema.
+o que e algoritmo;Um algoritmo é uma sequência de passos para resolver um problema.
 o que é python;Python é uma linguagem de programação simples e poderosa.
+o que e python;Python é uma linguagem de programação simples e poderosa.
 o que é java;Java é uma linguagem orientada a objetos muito utilizada.
-o que é c;C é uma linguagem de programação de baixo nível muito usada no ensino.
+o que e java;Java é uma linguagem orientada a objetos muito utilizada.
+o que é c;C é uma linguagem de programação muito utilizada no ensino.
+o que e c;C é uma linguagem de programação muito utilizada no ensino.
 o que é html;HTML é a linguagem usada para estruturar páginas web.
+o que e html;HTML é a linguagem usada para estruturar páginas web.
 o que é css;CSS é utilizado para estilizar páginas HTML.
+o que e css;CSS é utilizado para estilizar páginas HTML.
 o que é javascript;JavaScript adiciona interatividade às páginas web.
+o que e javascript;JavaScript adiciona interatividade às páginas web.
 o que é github;GitHub é uma plataforma para hospedar projetos com Git.
+o que e github;GitHub é uma plataforma para hospedar projetos com Git.
 o que é git;Git é um sistema de controle de versões.
+o que e git;Git é um sistema de controle de versões.
 como aprender programação;Pratique bastante e desenvolva pequenos projetos.
+como aprender programacao;Pratique bastante e desenvolva pequenos projetos.
 qual a melhor linguagem;Depende do objetivo do projeto.
 o que é variável;É um espaço na memória para armazenar dados.
+o que e variavel;É um espaço na memória para armazenar dados.
 o que é função;É um bloco de código reutilizável.
+o que e funcao;É um bloco de código reutilizável.
 o que é laço de repetição;É uma estrutura que executa comandos várias vezes.
+o que e laco de repeticao;É uma estrutura que executa comandos várias vezes.
 o que é if;É uma estrutura de decisão.
+o que e if;É uma estrutura de decisão.
 o que é lista;É uma coleção de elementos.
+o que e lista;É uma coleção de elementos.
 o que é dicionário;É uma estrutura que armazena pares chave e valor.
+o que e dicionario;É uma estrutura que armazena pares chave e valor.
 o que é orientação a objetos;É um paradigma baseado em objetos e classes.
+o que e orientacao a objetos;É um paradigma baseado em objetos e classes.
 
 o que é valorant;Valorant é um FPS tático da Riot Games.
 quem criou valorant;Valorant foi desenvolvido pela Riot Games.
