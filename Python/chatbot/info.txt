@@ -1,0 +1,282 @@
+oi;Olá! Como você está?
+olá;Oi! É um prazer conversar com você.
+bom dia;Bom dia! Espero que seu dia seja ótimo.
+boa tarde;Boa tarde! Como posso ajudar?
+boa noite;Boa noite! Em que posso ajudar?
+tudo bem;Estou bem, obrigado por perguntar.
+como vai;Estou indo muito bem.
+qual é seu nome;Sou um chatbot criado para conversar sobre Valorant e assuntos do dia a dia.
+quem é você;Sou um assistente virtual.
+o que você faz;Converso, respondo perguntas e tento ajudar.
+adeus;Até mais! Volte sempre.
+tchau;Tchau! Foi um prazer conversar.
+até logo;Até a próxima!
+obrigado;De nada!
+muito obrigado;Fico feliz em ajudar.
+por favor;Claro!
+desculpe;Tudo bem, acontece.
+como está o tempo;Não consigo ver o clima em tempo real.
+você gosta de jogos;Sim! Gosto de conversar sobre jogos.
+qual seu jogo favorito;Valorant é um dos assuntos que mais conheço.
+o que é valorant;Valorant é um jogo de tiro tático da Riot Games.
+quem criou valorant;Valorant foi criado pela Riot Games.
+quando valorant foi lançado;Valorant foi lançado em 2020.
+quantos jogadores tem um time;Cada equipe possui cinco jogadores.
+o que é spike;A Spike é o objetivo principal do modo padrão de Valorant.
+o que é eco;Eco é uma rodada em que o time economiza dinheiro.
+o que é full buy;É quando o time compra armas e equipamentos completos.
+o que é pistol;É a rodada inicial da partida.
+qual a melhor arma;Depende da situação e da habilidade do jogador.
+o que é vandal;A Vandal elimina com um tiro na cabeça em qualquer distância.
+o que é phantom;A Phantom é silenciosa e muito eficiente em curtas distâncias.
+qual a diferença entre vandal e phantom;A Vandal causa mais dano à distância, enquanto a Phantom é mais estável.
+o que é operador;A Operator é o rifle de precisão mais forte do jogo.
+o que é sheriff;A Sheriff é uma pistola poderosa.
+o que é spectre;A Spectre é uma submetralhadora popular em rodadas econômicas.
+o que é guardian;A Guardian é um rifle semiautomático de alto dano.
+o que é duelista;Duelistas são agentes focados em eliminar inimigos.
+o que é controlador;Controladores bloqueiam a visão dos adversários.
+o que é iniciador;Iniciadores ajudam a equipe a entrar nos bombsites.
+o que é sentinela;Sentinelas defendem áreas e apoiam a equipe.
+quem é jett;Jett é uma duelista muito ágil.
+quem é sage;Sage é uma sentinela capaz de curar aliados.
+quem é omen;Omen é um controlador especializado em fumaças.
+quem é phoenix;Phoenix é um duelista com habilidades de fogo.
+quem é sova;Sova é um iniciador que coleta informações.
+quem é cypher;Cypher é um sentinela focado em vigilância.
+quem é reyna;Reyna é uma duelista que fica mais forte após eliminações.
+quem é brimstone;Brimstone é um controlador com fumaças e habilidades de suporte.
+como melhorar no valorant;Treine a mira, a movimentação e a comunicação com a equipe.
+como subir de elo;Jogue em equipe, pratique e mantenha a calma.
+o que é hs;HS significa headshot, um tiro na cabeça.
+o que é aim;Aim é a habilidade de mirar bem.
+o que é crosshair;É a mira exibida no centro da tela.
+o que é bombsite;É a área onde a Spike pode ser plantada.
+qual seu agente favorito;Gosto de todos, mas Jett é muito popular.
+você joga valorant;Não jogo, mas conheço bastante sobre ele.
+quantos mapas existem;Valorant possui vários mapas e novos podem ser adicionados.
+você conhece esports;Sim! Valorant possui um cenário competitivo muito forte.
+quem ganha no valorant;Vence a equipe que atingir o número necessário de rodadas.
+você gosta de estudar;Aprender coisas novas é sempre interessante.
+qual a importância da educação;A educação ajuda no desenvolvimento pessoal e profissional.
+o que é matemática;É a ciência que estuda números, formas e padrões.
+o que é programação;É o processo de criar instruções para computadores.
+o que é python;Python é uma linguagem de programação muito popular.
+como aprender programação;Pratique bastante e desenvolva pequenos projetos.
+qual a melhor linguagem;Não existe uma única melhor linguagem, depende do objetivo.
+o que é algoritmo;É uma sequência de passos para resolver um problema.
+você gosta de robótica;Sim! Robótica é uma área muito interessante.
+o que é inteligência artificial;É a área que desenvolve sistemas capazes de realizar tarefas inteligentes.
+o que é computador;É uma máquina capaz de processar informações.
+você conhece o github;Sim! É uma plataforma para compartilhar projetos de programação.
+o que é internet;É uma rede mundial que conecta computadores.
+qual a capital do brasil;A capital do Brasil é Brasília.
+quanto é dois mais dois;Dois mais dois é quatro.
+você é inteligente;Faço o meu melhor para responder corretamente.
+você aprende;Posso melhorar quando minha base de conhecimento é ampliada.
+conte uma curiosidade;Treinar todos os dias é uma das melhores formas de evoluir em qualquer habilidade.
+estou feliz;Que bom! Espero que continue assim.
+estou triste;Sinto muito. Espero que as coisas melhorem logo.
+estou cansado;Talvez seja uma boa hora para descansar um pouco.
+estou com sono;Dormir bem faz muito bem para a saúde.
+estou com fome;Que tal fazer um lanche?
+você é legal;Obrigado pelo elogio!
+você é chato;Vou tentar melhorar.
+qual sua idade;Sou um programa, então não tenho idade.
+você tem amigos;Converso com muitas pessoas diferentes.
+você pode me ajudar;Claro! Diga no que posso ajudar.
+o que você sabe;Sei conversar sobre Valorant, programação, educação e assuntos do dia a dia.
+qual sua cor favorita;Não tenho preferências pessoais.
+você sente emoções;Não, mas consigo entender o que você escreve.
+você é humano;Não, sou um chatbot.
+vamos conversar;Claro! Sobre o que você gostaria de falar?
+como melhorar minha mira;Treine diariamente no campo de tiro e mantenha uma sensibilidade confortável.
+qual a melhor sensibilidade;Não existe uma melhor sensibilidade, escolha uma que permita precisão e consistência.
+como encontrar minha sensibilidade;Faça movimentos de 180 graus confortavelmente e ajuste até sentir precisão.
+vale a pena usar aim lab;Sim, o Aim Lab ajuda a desenvolver memória muscular e precisão.
+como melhorar o reflexo;Jogue regularmente e pratique exercícios de reação.
+como subir de elo;Comunique-se com sua equipe, treine sua mira e evite jogar tiltado.
+como sair do ferro;Aprenda posicionamento, economia e fundamentos antes de mecânicas avançadas.
+como sair do bronze;Priorize sobreviver mais e evitar erros básicos.
+como sair do prata;Treine a comunicação e pare de depender apenas da mira.
+como sair do ouro;Aprenda utilitários, timings e controle de mapa.
+como sair do platina;Comece a estudar VODs e estratégias.
+como sair do diamante;A consistência faz mais diferença do que jogadas individuais.
+como chegar ao radiante;É necessário dominar mecânica, estratégia e comunicação.
+o que é peek;Peek é sair rapidamente da cobertura para visualizar ou enfrentar um inimigo.
+o que é jiggle peek;É um movimento rápido usado para pegar informação sem se expor muito.
+o que é wide peek;É abrir bastante o ângulo para dificultar o ajuste da mira do adversário.
+o que é shoulder peek;É mostrar apenas uma parte do personagem para forçar um disparo inimigo.
+o que é prefire;É atirar antes mesmo de visualizar totalmente o adversário.
+o que é crosshair placement;É manter a mira sempre na altura da cabeça.
+como melhorar o crosshair placement;Antecipe onde o inimigo aparecerá e mantenha a mira nessa altura.
+o que é spray control;É controlar o recuo da arma durante disparos contínuos.
+como controlar o spray da vandal;Puxe levemente a mira para baixo nos primeiros tiros.
+como controlar o spray da phantom;Compense o recuo puxando a mira para baixo de forma suave.
+vale a pena andar agachado;Somente em situações específicas, pois reduz sua mobilidade.
+é melhor correr ou andar;Ande quando precisar fazer silêncio e corra quando velocidade for prioridade.
+o que é baitar;É usar um aliado como distração para conseguir vantagem.
+o que é entry frag;É o primeiro jogador que entra no bombsite.
+o que é lurker;É o jogador que atua separado da equipe buscando informação e eliminações.
+o que é rotate;É mudar rapidamente de bombsite.
+quando devo rotacionar;Após obter informação confiável sobre o posicionamento inimigo.
+o que é fake;É fingir um ataque para forçar a rotação dos adversários.
+o que é retake;É recuperar um bombsite após a Spike ser plantada.
+como fazer retake;Espere sua equipe e utilize utilitários antes de entrar.
+o que é default;É uma formação inicial para obter informações do mapa.
+o que é stack;É quando vários jogadores defendem ou atacam o mesmo local.
+quando fazer eco;Quando a equipe não possui dinheiro suficiente para comprar completa.
+quando fazer force buy;Quando perder pode comprometer a partida ou quando toda a equipe compra.
+o que é half buy;É comprar apenas alguns equipamentos para economizar.
+quanto dinheiro ganho vencendo;O dinheiro recebido depende da situação da rodada.
+o que é ultimate orb;É um orbe que concede um ponto para a ultimate.
+como carregar ultimate;Conseguindo eliminações, plantando, desarmando ou coletando orbes.
+qual duelista é melhor para iniciantes;Phoenix costuma ser uma boa escolha para aprender.
+qual controlador é mais fácil;Brimstone possui habilidades simples de utilizar.
+qual sentinela é melhor;Depende do mapa e da composição da equipe.
+qual iniciador escolher;Sova é uma excelente opção para aprender fundamentos.
+qual agente tem mais mobilidade;Jett e Raze possuem grande mobilidade.
+qual agente é melhor para solo queue;Reyna e Jett costumam funcionar bem individualmente.
+qual agente é melhor para jogar em equipe;Sova, Breach, Omen e Killjoy oferecem muito suporte.
+como jogar de jett;Use sua mobilidade para abrir espaço e escapar rapidamente.
+como jogar de sage;Priorize curar aliados importantes e controlar áreas.
+como jogar de omen;Utilize fumaças para bloquear visão antes do avanço da equipe.
+como jogar de cypher;Colete informações usando armadilhas e câmera.
+como jogar de killjoy;Proteja os bombsites utilizando torreta e alarmbot.
+como jogar de sova;Use flechas para revelar posições antes de avançar.
+como jogar de breach;Sincronize suas habilidades com a entrada dos duelistas.
+como jogar de reyna;Procure duelos individuais para aproveitar suas habilidades.
+qual arma comprar no pistol;Ghost ou Sheriff são boas escolhas dependendo da estratégia.
+quando comprar operator;Quando houver economia suficiente e posição favorável.
+vandal ou phantom;Vandal é melhor para longas distâncias e Phantom para combates próximos.
+spectre ou stinger;A Spectre é mais consistente e fácil de controlar.
+guardian vale a pena;Sim, principalmente para jogadores com boa precisão.
+ares ou odin são boas;São fortes para situações específicas e defesa de certos mapas.
+qual arma tem menos recuo;A Phantom possui recuo mais controlável.
+como melhorar minha movimentação;Evite atirar enquanto está correndo e pratique counter strafe.
+o que é counter strafe;É parar rapidamente para recuperar a precisão dos disparos.
+por que minhas balas não acertam;Provavelmente você está se movimentando enquanto atira.
+como jogar em equipe;Comunique informações úteis e jogue junto dos aliados.
+como dar call;Informe posição, quantidade de inimigos e dano causado.
+o que é call;É uma informação passada para a equipe durante a partida.
+como evitar tilt;Faça pausas após derrotas e mantenha a calma.
+vale a pena jogar ranked cansado;Não, seu desempenho tende a diminuir.
+como aquecer antes da ranked;Treine no campo de tiro e jogue uma partida sem compromisso.
+quantas partidas ranked por dia;Jogue apenas enquanto estiver focado e consistente.
+como analisar meus erros;Assista suas partidas e identifique decisões ruins.
+como melhorar meu posicionamento;Evite locais previsíveis e sempre tenha cobertura.
+como ganhar mais confrontos;Mantenha vantagem de posição e prepare sua mira antes do duelo.
+como defender um bombsite sozinho;Use utilitários para atrasar o avanço e peça ajuda rapidamente.
+como atacar um bombsite;Entre junto da equipe utilizando utilitários.
+como jogar clutch;Mantenha a calma e transforme vários duelos em confrontos individuais.
+o que significa ace;Ace acontece quando um jogador elimina os cinco adversários.
+o que significa clutch;É vencer uma rodada estando em desvantagem numérica.
+o que significa nt;NT significa Nice Try, usado para elogiar uma tentativa.
+o que significa gg;GG significa Good Game.
+o que significa glhf;GLHF significa Good Luck, Have Fun.
+o que significa ff;FF normalmente significa desistir da partida.
+como melhorar minha comunicação;Passe apenas informações importantes e de forma objetiva.
+qual resolução usam os profissionais;A maioria utiliza resolução 1920x1080, mas existem exceções.
+fps influencia;Sim, quanto maior a taxa de quadros, mais fluida será a jogabilidade.
+qual fps ideal;Acima de 144 FPS proporciona uma experiência bastante fluida.
+monitor 144hz faz diferença;Sim, melhora a percepção dos movimentos.
+mouse influencia;Um bom sensor ajuda, mas habilidade continua sendo o principal fator.
+qual dpi usar;Muitos profissionais utilizam entre 400 e 800 DPI.
+como configurar minha mira;Escolha uma mira simples e fácil de visualizar.
+qual mira os profissionais usam;Cada profissional possui preferências diferentes.
+como melhorar rapidamente;Pratique diariamente e foque em corrigir um erro por vez.
+fale sobre ascent;Ascent é um mapa equilibrado onde controlar o meio é essencial para vencer.
+como atacar na ascent;Controle o meio primeiro, utilize fumaças no Market e CT e entre em grupo.
+como defender na ascent;Dispute o meio no início e utilize as portas para atrasar os ataques.
+melhores agentes na ascent;Omen, Sova, Killjoy, Jett e KAY/O funcionam muito bem.
+melhor controlador na ascent;Omen é o controlador mais consistente na Ascent.
+melhor iniciador na ascent;Sova domina o mapa com flechas de reconhecimento.
+melhor sentinela na ascent;Killjoy protege muito bem os bombsites.
+melhor duelista na ascent;Jett consegue abrir espaço rapidamente.
+melhores armas na ascent;Vandal, Operator e Sheriff são excelentes devido às médias e longas distâncias.
+
+fale sobre bind;Bind possui dois bombsites, nenhum meio e dois teleportadores para rotações rápidas.
+como atacar na bind;Utilize os teleportadores para confundir a defesa e execute entradas rápidas.
+como defender na bind;Controle os teleportadores e atrase o avanço com utilitários.
+melhores agentes na bind;Brimstone, Raze, Skye, Viper e Cypher.
+melhor controlador na bind;Brimstone oferece fumaças precisas e ultimate muito forte.
+melhor duelista na bind;Raze domina os corredores estreitos.
+melhores armas na bind;Phantom, Judge, Spectre e Vandal.
+
+fale sobre haven;Haven possui três bombsites e exige muita rotação da defesa.
+como atacar na haven;Use pressão em vários pontos para abrir espaço em um dos três sites.
+como defender na haven;Colete informação constantemente antes de rotacionar.
+melhores agentes na haven;Omen, Sova, Cypher, Jett e Breach.
+melhor iniciador na haven;Sova revela áreas enormes do mapa.
+melhor sentinela na haven;Cypher consegue proteger flancos com eficiência.
+melhores armas na haven;Vandal, Operator e Guardian.
+
+fale sobre split;Split é um mapa muito vertical e favorece bastante a defesa.
+como atacar na split;Domine o meio antes de tentar entrar nos bombsites.
+como defender na split;Controle o meio e utilize a vantagem da altura.
+melhores agentes na split;Raze, Omen, Cypher, Breach e Killjoy.
+melhor duelista na split;Raze aproveita muito os espaços fechados.
+melhor controlador na split;Omen controla bem o meio e as entradas.
+melhores armas na split;Phantom, Judge, Spectre e Vandal.
+
+fale sobre breeze;Breeze possui enormes linhas de visão e favorece confrontos de longa distância.
+como atacar na breeze;Abra espaço utilizando reconhecimento antes de avançar.
+como defender na breeze;Evite avançar sozinho e utilize operadores em posições abertas.
+melhores agentes na breeze;Viper, Sova, Jett, Cypher e Yoru.
+melhor controlador na breeze;Viper domina completamente esse mapa.
+melhores armas na breeze;Vandal, Operator, Guardian e Marshal.
+
+fale sobre icebox;Icebox possui muita verticalidade e vários ângulos para limpar.
+como atacar na icebox;Entre utilizando cordas e habilidades para limpar posições elevadas.
+como defender na icebox;Aproveite a verticalidade para surpreender os atacantes.
+melhores agentes na icebox;Viper, Sage, Sova, Jett e Killjoy.
+melhor sentinela na icebox;Sage ajuda muito no controle das entradas.
+melhores armas na icebox;Vandal, Operator e Phantom.
+
+fale sobre lotus;Lotus possui três bombsites, portas giratórias e diversas opções de rotação.
+como atacar na lotus;Utilize as portas para criar ataques inesperados.
+como defender na lotus;Colete informação rapidamente antes das rotações.
+melhores agentes na lotus;Fade, Omen, Killjoy, Raze e Viper.
+melhor iniciador na lotus;Fade consegue revelar vários cantos do mapa.
+melhores armas na lotus;Vandal, Phantom e Sheriff.
+
+fale sobre sunset;Sunset possui três rotas principais e um meio extremamente importante.
+como atacar na sunset;Controle o meio antes de escolher um bombsite.
+como defender na sunset;Dispute o meio com utilitários logo no início.
+melhores agentes na sunset;Omen, Breach, Cypher, Raze e Sova.
+melhores armas na sunset;Vandal, Phantom e Operator.
+
+fale sobre pearl;Pearl é um mapa clássico sem mecânicas especiais e com longas rotações.
+como atacar na pearl;Controle o meio para abrir possibilidades de ataque.
+como defender na pearl;Negue o domínio do meio e rotacione rapidamente.
+melhores agentes na pearl;Astra, Fade, Killjoy, Jett e Viper.
+melhor controlador na pearl;Astra consegue controlar grandes áreas.
+melhores armas na pearl;Vandal, Guardian e Operator.
+
+fale sobre fracture;Fracture permite que os atacantes iniciem por dois lados diferentes do mapa.
+como atacar na fracture;Ataque simultaneamente por lados diferentes para dividir a defesa.
+como defender na fracture;Busque informação antes de decidir onde concentrar jogadores.
+melhores agentes na fracture;Breach, Brimstone, Raze, Killjoy e Fade.
+melhor iniciador na fracture;Breach aproveita perfeitamente o layout do mapa.
+melhores armas na fracture;Phantom, Judge, Spectre e Vandal.
+
+fale sobre abyss;Abyss possui áreas sem proteção onde é possível cair do mapa.
+como atacar na abyss;Controle as áreas abertas e tenha cuidado com as quedas.
+como defender na abyss;Use habilidades para impedir o avanço pelos corredores largos.
+melhores agentes na abyss;Jett, Omen, Fade, Cypher e Sova.
+melhores armas na abyss;Vandal, Operator e Guardian.
+
+qual mapa favorece operator;Breeze, Pearl, Haven e Ascent favorecem bastante a Operator.
+qual mapa favorece phantom;Split, Bind, Fracture e Lotus favorecem a Phantom.
+qual mapa favorece vandal;Ascent, Breeze, Haven, Pearl e Abyss.
+qual mapa favorece judge;Bind, Split e Fracture.
+qual mapa é melhor para jett;Ascent, Breeze, Icebox e Haven.
+qual mapa é melhor para raze;Bind, Split, Lotus e Fracture.
+qual mapa é melhor para omen;Ascent, Split, Haven e Sunset.
+qual mapa é melhor para viper;Breeze, Icebox, Bind e Pearl.
+qual mapa é melhor para sova;Ascent, Haven, Breeze e Icebox.
+qual mapa é melhor para killjoy;Ascent, Split, Lotus e Pearl.
+qual mapa é melhor para cypher;Bind, Sunset, Haven e Breeze.
+qual mapa é melhor para breach;Fracture, Haven e Split.
+qual mapa é melhor para fade;Lotus, Pearl e Fracture.
+qual mapa é melhor para sage;Icebox, Split e Haven.
