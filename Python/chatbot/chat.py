@@ -1,17 +1,12 @@
-import os
 import random
 import re
+import unicodedata
 
-# ==========================================
-# Caminho correto do arquivo de conhecimento
-# ==========================================
+ARQUIVO_BANCO = "info.txt"
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ARQUIVO_INFO = os.path.join(BASE_DIR, "info.txt")
-
-# ==========================================
-# Lista de palavras proibidas
-# ==========================================
+# ==============================
+# PALAVRAS PROIBIDAS
+# ==============================
 
 PALAVRAS_PROIBIDAS = [
     "idiota", "burro", "otario", "otário", "babaca",
@@ -42,111 +37,168 @@ PALAVRAS_PROIBIDAS = [
     "hentai", "onlyfans"
 ]
 
-# ==========================================
-# Saudação
-# ==========================================
+# ==============================
+# FUNÇÕES AUXILIARES
+# ==============================
+
+def remover_acentos(texto):
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', texto)
+        if unicodedata.category(c) != 'Mn'
+    )
+
+def normalizar(texto):
+    texto = texto.lower().strip()
+    texto = remover_acentos(texto)
+    texto = re.sub(r'[^\w\s]', '', texto)
+    return texto
+
+# ==============================
+# SAUDAÇÕES
+# ==============================
 
 def saudacoes(nome):
     frases = [
-        f"Olá! Eu sou {nome}. Como posso ajudar?",
-        "Olá! Tudo bem?",
-        "Oi! Em que posso ajudar?"
+        f"Bom dia! Meu nome é {nome}. Como vai você?",
+        f"Olá! Eu sou {nome}.",
+        f"Oi! Eu sou {nome}. Como posso ajudar?"
     ]
-
     print(random.choice(frases))
 
+def saudacoes_GUI(nome):
+    frases = [
+        f"Bom dia! Meu nome é {nome}. Como vai você?",
+        f"Olá! Eu sou {nome}.",
+        f"Oi! Eu sou {nome}. Como posso ajudar?"
+    ]
+    return random.choice(frases)
 
-# ==========================================
-# Recebe texto
-# ==========================================
+# ==============================
+# RECEBER TEXTO
+# ==============================
 
 def recebeTexto():
 
-    texto = input("Cliente: ").strip().lower()
+    texto = input("Cliente: ").strip()
 
-    if texto == "":
-        return None
+    texto_normalizado = normalizar(texto)
 
     for palavra in PALAVRAS_PROIBIDAS:
+        if re.search(rf"\b{re.escape(remover_acentos(palavra.lower()))}\b",
+                     texto_normalizado):
 
-        if re.search(rf"\b{re.escape(palavra)}\b", texto):
             print("Maria: Desculpe, não posso responder esse tipo de mensagem.")
             return None
 
     return texto
 
-
-# ==========================================
-# Carrega base de conhecimento
-# ==========================================
+# ==============================
+# CARREGAR BASE
+# ==============================
 
 def carregar_base():
 
     base = {}
 
-    if not os.path.exists(ARQUIVO_INFO):
+    try:
 
-        with open(ARQUIVO_INFO, "w", encoding="utf-8"):
-            pass
+        with open(ARQUIVO_BANCO, "r", encoding="utf-8") as arquivo:
 
-        return base
+            for linha in arquivo:
 
-    with open(ARQUIVO_INFO, "r", encoding="utf-8") as arquivo:
+                linha = linha.strip()
 
-        for linha in arquivo:
+                if ";" not in linha:
+                    continue
 
-            linha = linha.strip()
+                pergunta, resposta = linha.split(";", 1)
 
-            if linha == "":
-                continue
+                pergunta = normalizar(pergunta)
 
-            if ";" not in linha:
-                continue
+                if pergunta not in base:
+                    base[pergunta] = []
 
-            pergunta, resposta = linha.split(";", 1)
+                base[pergunta].append(resposta)
 
-            base[pergunta.strip().lower()] = resposta.strip()
+    except FileNotFoundError:
+
+        open(ARQUIVO_BANCO, "w", encoding="utf-8").close()
 
     return base
 
+# ==============================
+# BASE EM MEMÓRIA
+# ==============================
 
-# ==========================================
-# Salva nova pergunta
-# ==========================================
-
-def salvar(pergunta, resposta):
-
-    with open(ARQUIVO_INFO, "a", encoding="utf-8") as arquivo:
-
-        arquivo.write(f"\n{pergunta};{resposta}")
+BASE = carregar_base()
 
 
-# ==========================================
-# Busca resposta
-# ==========================================
+# ==============================
+# BUSCAR RESPOSTA
+# ==============================
 
-def buscaResposta(nome, texto):
+def buscaResposta(texto):
 
-    if texto == "tchau":
+    global BASE
+
+    pergunta = normalizar(texto)
+
+    # Encerrar chatbot
+    if pergunta in ["tchau", "adeus", "até logo", "ate logo"]:
         return "fim"
 
-    base = carregar_base()
+    # Procura resposta
+    if pergunta in BASE:
+        return random.choice(BASE[pergunta])
 
-    if texto in base:
-        return "Chatbot: " + base[texto]
+    # Não encontrou
+    print("Maria: Não sei responder isso.")
 
-    print("Maria: Ainda não sei responder essa pergunta.")
+    resposta = input("Qual deveria ser a resposta? ")
 
-    resposta = input("Digite a resposta correta: ").strip()
+    salva_sugestao(texto, resposta)
 
-    salvar(texto, resposta)
-
-    return "Chatbot: Obrigado! Aprendi uma nova resposta."
+    return "Obrigado! Aprendi uma nova resposta."
 
 
-# ==========================================
-# Exibe resposta
-# ==========================================
+# ==============================
+# VERSÃO PARA GUI
+# ==============================
+
+def buscaResposta_GUI(texto):
+
+    global BASE
+
+    pergunta = normalizar(texto)
+
+    if pergunta in BASE:
+        return random.choice(BASE[pergunta])
+
+    return None
+
+
+# ==============================
+# SALVAR NOVA RESPOSTA
+# ==============================
+
+def salva_sugestao(pergunta, resposta):
+
+    global BASE
+
+    pergunta = normalizar(pergunta)
+
+    with open(ARQUIVO_BANCO, "a", encoding="utf-8") as arquivo:
+        arquivo.write(f"\n{pergunta};{resposta}")
+
+    if pergunta not in BASE:
+        BASE[pergunta] = []
+
+    BASE[pergunta].append(resposta)
+
+
+# ==============================
+# EXIBIR RESPOSTA
+# ==============================
 
 def exibeResposta(resposta, nome):
 
@@ -154,38 +206,18 @@ def exibeResposta(resposta, nome):
         print(f"{nome}: Volte sempre!")
         return "fim"
 
-    print(resposta.replace("Chatbot:", nome + ":"))
+    print(f"{nome}: {resposta}")
 
     return "continua"
 
-def exibeResposta_GUI(pergunta, resposta, nome):
-    return resposta.replace("Chatbot:", nome)
 
-def saudacoes_GUI(nome):
-    import random
-    frases = [
-        f"Olá! Eu sou {nome}. Como posso ajudar?",
-        "Olá! Tudo bem?",
-        "Oi! Em que posso ajudar?"
-    ]
+# ==============================
+# VERSÃO GUI
+# ==============================
 
-    return frases[random.randint(0,2)]
+def exibeResposta_GUI(resposta, nome):
 
-def salva_sugestao(sugestao):
-    with open("info.txt", "a+") as conhecimento:
-        conhecimento.write("Chatbot: " + sugestao + "\n")
+    if resposta == "fim":
+        return f"{nome}: Volte sempre!"
 
-def buscaResposta_GUI(texto):
-    with open("info.txt", "r") as           conhecimento:
-        conhecimento.seek(0)
-        while True:
-            viu = conhecimento.readline()
-            if viu != "":
-                if jaccard(texto, viu) > 0.3:
-                    proximalinha = conhecimento.readline()
-                    if "Chatbot:" in proximalinha:
-                        return proximalinha
-            else:
-                conhecimento.write(texto)
-                return " Me desculpe, não sei o que falar"
-
+    return f"{nome}: {resposta}"

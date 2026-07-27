@@ -1,71 +1,142 @@
-import chatbot as pc
+import chat as pc
 from tkinter import *
+import re
 
-main_window = Tk()
-
-main_window.title("Chatbot Dona Maria")
-main_window.geometry("500x700")
-
-main_window.grid()
-
-main_window.mainloop()
-
-frame = Frame(main_window)
-frame.grid()
-
-l_identif = Label(frame, text="Insira uma mensagem aqui: ")
-l_identif.grid(row=0, column=0)
-
-e_mensagem = Entry(frame)
-e_mensagem.grid(row=0, column=1)
-
-frame2 = Frame(main_window)
-frame2.grid(row=1, column=0)
-v = StringVar()
-Label(frame2, textvariable=v).grid()
+# ============================
+# CONFIGURAÇÃO DA JANELA
+# ============================
 
 nome_maquina = "Maria"
 
-v.set("Qual seu nome?")
+main_window = Tk()
+main_window.title("Chatbot Dona Maria")
+main_window.geometry("700x600")
 
+# ============================
+# VARIÁVEIS
+# ============================
+
+historico = ""
 entrada_sugestao = False
+ultima_pergunta = ""
 
-entrada_nome_usuario = True
+# ============================
+# HISTÓRICO
+# ============================
 
-nome_usuario = ""
+texto_conversa = Text(
+    main_window,
+    width=80,
+    height=25,
+    state=DISABLED,
+    wrap=WORD
+)
 
-def roda_Chatbot():
+texto_conversa.pack(pady=10)
+
+# ============================
+# ENTRADA
+# ============================
+
+frame = Frame(main_window)
+frame.pack()
+
+entrada = Entry(frame, width=60)
+entrada.grid(row=0, column=0, padx=5)
+
+# ============================
+# FUNÇÕES
+# ============================
+
+def escrever(mensagem):
+
+    texto_conversa.config(state=NORMAL)
+
+    texto_conversa.insert(END, mensagem + "\n")
+
+    texto_conversa.config(state=DISABLED)
+
+    texto_conversa.see(END)
+
+
+def contem_palavra_proibida(texto):
+    texto_normalizado = pc.normalizar(texto)
+    for palavra in pc.PALAVRAS_PROIBIDAS:
+        if re.search(rf"\b{re.escape(pc.remover_acentos(palavra.lower()))}\b",
+                     texto_normalizado):
+            return True
+    return False
+
+
+def enviar(event=None):
+
     global entrada_sugestao
-    global entrada_nome_usuario
-    global historico_conversa
-    global nome_usuario
+    global ultima_pergunta
 
-    if entrada_nome_usuario:
-        nome_usuario = e_mensagem.get()
-        saudacao = pc.saudacoes_GUI(nome_maquina)
-        historico_conversa = nome_maquina + ": " + saudacao + "\n"
-        v.set(historico_conversa)
-        entrada_nome_usuario = False
+    texto = entrada.get().strip()
+
+    if texto == "":
+        return
+
+    entrada.delete(0, END)
+
+    escrever("Você: " + texto)
+
+    # Filtro de palavras proibidas (exceto quando está sugerindo resposta)
+    if not entrada_sugestao and contem_palavra_proibida(texto):
+        escrever(nome_maquina + ": Desculpe, não posso responder esse tipo de mensagem.")
+        return
+
+    if entrada_sugestao:
+
+        pc.salva_sugestao(ultima_pergunta, texto)
+
+        escrever(nome_maquina + ": Obrigado! Aprendi uma nova resposta.")
+
+        entrada_sugestao = False
+
+        return
+
+    # Verificar despedida
+    pergunta = pc.normalizar(texto)
+    if pergunta in ["tchau", "adeus", "até logo", "ate logo"]:
+        escrever(nome_maquina + ": Volte sempre!")
+        return
+
+    resposta = pc.buscaResposta_GUI(texto)
+
+    if resposta is None:
+
+        escrever(nome_maquina + ": Não sei responder isso.")
+
+        escrever(nome_maquina + ": Qual deveria ser a resposta?")
+
+        ultima_pergunta = texto
+
+        entrada_sugestao = True
+
     else:
-        texto = e_mensagem.get()
-        historico_conversa += "\n" + nome_usuario + ": " + texto
-        v.set(historico_conversa)
 
-        if entrada_sugestao:
-            pc.salva_sugestao(texto)
-            entrada_sugestao = False
-            historico_conversa += "\n Agira aprendi! Vamos continuar nossa conversa... \n"
-            v.set(historico_conversa)
-        else:
-            resposta = pc.buscaResposta.GUI("Cliente: " + texto + "\n")
-            if resposta == " Me desculpe, não sei o que falar":
-                historico_conversa += "\n Me desculpe, não sei o que falar. O que você esperava? \n"
-                v.set(historico_conversa)
-                entrada_sugestao = True
-            else:
-                historico_conversa += "\n" + pc.exibeResposta_GUI(texto,resposta, nome_maquina)
-                v.set(historico_conversa)
+        escrever(nome_maquina + ": " + resposta)
 
-Button(frame, text="Clique", command=roda_Chatbot).grid(row=0, column=2)
-                
-main_window.mainloop()         
+# ============================
+# BOTÃO
+# ============================
+
+Button(
+    frame,
+    text="Enviar",
+    command=enviar
+).grid(row=0, column=1)
+
+entrada.bind("<Return>", enviar)
+
+# ============================
+# MENSAGEM INICIAL
+# ============================
+
+escrever(pc.saudacoes_GUI(nome_maquina))
+
+entrada.focus()
+
+main_window.mainloop()

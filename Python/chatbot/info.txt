@@ -183,5 +183,3 @@ como melhorar meu fps;Reduza configurações gráficas e mantenha os drivers atu
 qual sistema operacional você recomenda;Windows e Linux são excelentes, dependendo da necessidade.
 você conhece linux;Sim, Linux é um sistema operacional de código aberto.
 você conhece windows;Sim, Windows é um dos sistemas operacionais mais utilizados.
-vc ja sabe quantos menbros o grupo de kpop bts tem?;7 menbros, sendo eles, park jimin, kim namjoon,min yoongi,jung hoseok,kim taehyung, kim seokjin e jeon jungkook
-c:\users\bruno\appdata\local\microsoft\windowsapps\python3.11.exe c:/users/bruno/desktop/github/ctrl-play/python/chatbot/interfacegrafica.py;C:\Users\bruno\AppData\Local\Microsoft\WindowsApps\python3.11.exe c:/Users/bruno/Desktop/GitHub/Ctrl-Play/Python/chatbot/InterfaceGrafica.py
