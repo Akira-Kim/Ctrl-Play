@@ -157,3 +157,35 @@ def exibeResposta(resposta, nome):
     print(resposta.replace("Chatbot:", nome + ":"))
 
     return "continua"
+
+def exibeResposta_GUI(pergunta, resposta, nome):
+    return resposta.replace("Chatbot:", nome)
+
+def saudacoes_GUI(nome):
+    import random
+    frases = [
+        f"Olá! Eu sou {nome}. Como posso ajudar?",
+        "Olá! Tudo bem?",
+        "Oi! Em que posso ajudar?"
+    ]
+
+    return frases[random.randint(0,2)]
+
+def salva_sugestao(sugestao):
+    with open("info.txt", "a+") as conhecimento:
+        conhecimento.write("Chatbot: " + sugestao + "\n")
+
+def buscaResposta_GUI(texto):
+    with open("info.txt", "r") as           conhecimento:
+        conhecimento.seek(0)
+        while True:
+            viu = conhecimento.readline()
+            if viu != "":
+                if jaccard(texto, viu) > 0.3:
+                    proximalinha = conhecimento.readline()
+                    if "Chatbot:" in proximalinha:
+                        return proximalinha
+            else:
+                conhecimento.write(texto)
+                return " Me desculpe, não sei o que falar"
+
