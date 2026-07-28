@@ -221,3 +221,23 @@ def exibeResposta_GUI(resposta, nome):
         return f"{nome}: Volte sempre!"
 
     return f"{nome}: {resposta}"
+
+def jaccard(textoUsuario, textoBase):
+    textoUsuario = limpa_frase(textoUsuario)
+    textoBase = limpa_frase(textoBase)
+    if len(textoBase) < 1:
+        return 0
+    else:
+        palavras_em_comum = 0
+        for palavra in textoUsuario.split():
+            if palavra in textoBase.split():
+                palavras_em_comum += 1
+        return palavras_em_comum / (len(textoBase.split()))
+
+def limpa_frase(frase):
+    tirar = [".", ",", "!", "?", ";", ":", "-", "_", "(", ")", "[", "]", "{", "}", "'", '"',"Cliente: ", "\n"]
+    for t in tirar:
+        frase = frase.replace(t, "")
+    frase = frase.upper()
+    return frase
+    
