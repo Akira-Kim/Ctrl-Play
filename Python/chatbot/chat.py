@@ -6,7 +6,7 @@ ARQUIVO_BANCO = "info.txt"
 
 # Quanto a pergunta precisa se parecer com a do banco (0.0 a 1.0)
 # 0.45 = razoável | 0.60 = mais rigoroso | 0.30 = mais permissivo
-LIMIAR_SIMILARIDADE = 0.45
+LIMIAR_SIMILARIDADE = 0.40
 
 # ==============================
 # PALAVRAS PROIBIDAS
@@ -55,6 +55,30 @@ def normalizar(texto):
     texto = texto.lower().strip()
     texto = remover_acentos(texto)
     texto = re.sub(r'[^\w\s]', '', texto)
+
+    # Separa juntadas comuns (ex: "oque" → "o que")
+    juntadas = {
+        "oque": "o que",
+        "oq": "o que",
+        "pq": "por que",
+        "pque": "por que",
+        "pd": "pode",
+        "vc": "voce",
+        "vcs": "voces",
+        "tb": "tambem",
+        "tbm": "tambem",
+        "blz": "beleza",
+        "msg": "mensagem",
+        "qdo": "quando",
+        "qnto": "quanto",
+        "qnt": "quanto",
+    }
+    palavras = texto.split()
+    novas = []
+    for p in palavras:
+        novas.append(juntadas.get(p, p))
+    texto = " ".join(novas)
+
     return texto
 
 # ==============================
@@ -62,12 +86,9 @@ def normalizar(texto):
 # ==============================
 
 def limpa_frase(frase):
-    """Remove pontuação e deixa em minúsculas (para comparar palavras)."""
-    frase = remover_acentos(frase.lower())
-    for t in [".", ",", "!", "?", ";", ":", "-", "_",
-              "(", ")", "[", "]", "{", "}", "'", '"', "\n"]:
-        frase = frase.replace(t, "")
-    return frase.strip()
+    """Remove pontuação e normaliza juntadas (para comparar palavras)."""
+    # Reutiliza a normalização completa (já trata juntadas)
+    return normalizar(frase)
 
 
 def jaccard(texto1, texto2):
