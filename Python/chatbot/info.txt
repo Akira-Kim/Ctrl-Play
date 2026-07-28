@@ -183,3 +183,4 @@ como melhorar meu fps;Reduza configurações gráficas e mantenha os drivers atu
 qual sistema operacional você recomenda;Windows e Linux são excelentes, dependendo da necessidade.
 você conhece linux;Sim, Linux é um sistema operacional de código aberto.
 você conhece windows;Sim, Windows é um dos sistemas operacionais mais utilizados.
+estou bem;que bom, como posso ajudar
