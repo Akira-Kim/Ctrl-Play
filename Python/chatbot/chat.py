@@ -1,12 +1,17 @@
 import random
 import re
 import unicodedata
+import difflib
+import os
 
-ARQUIVO_BANCO = "info.txt"
+_PASTA = os.path.dirname(os.path.abspath(__file__))
+ARQUIVO_BANCO = os.path.join(_PASTA, "info.txt")
 
-# Quanto a pergunta precisa se parecer com a do banco (0.0 a 1.0)
-# 0.45 = razoável | 0.60 = mais rigoroso | 0.30 = mais permissivo
-LIMIAR_SIMILARIDADE = 0.40
+# Limiar do Jaccard (palavras em comum)
+LIMIAR_JACCARD = 0.40
+
+# Limiar do difflib (parecido letra a letra) — 0.0 a 1.0
+LIMIAR_DIGITACAO = 0.72
 
 # ==============================
 # PALAVRAS PROIBIDAS
@@ -42,7 +47,7 @@ PALAVRAS_PROIBIDAS = [
 ]
 
 # ==============================
-# FUNÇÕES AUXILIARES
+# CAMADA 1 — NORMALIZAÇÃO
 # ==============================
 
 def remover_acentos(texto):
@@ -51,12 +56,20 @@ def remover_acentos(texto):
         if unicodedata.category(c) != 'Mn'
     )
 
+
 def normalizar(texto):
+    """
+    Camada 1: limpa o texto.
+    - minúsculas
+    - sem acento
+    - sem pontuação
+    - separa juntadas comuns (oque → o que)
+    """
     texto = texto.lower().strip()
     texto = remover_acentos(texto)
     texto = re.sub(r'[^\w\s]', '', texto)
 
-    # Separa juntadas comuns (ex: "oque" → "o que")
+    # Juntadas e abreviações comuns em português (digitação rápida)
     juntadas = {
         "oque": "o que",
         "oq": "o que",
@@ -72,62 +85,153 @@ def normalizar(texto):
         "qdo": "quando",
         "qnto": "quanto",
         "qnt": "quanto",
+        "n": "nao",
+        "ñ": "nao",
+        "eh": "e",
+        "tah": "ta",
+        "to": "estou",
+        "tou": "estou",
+        "tmj": "tamo junto",
+        "vlw": "valeu",
+        "flw": "falou",
+        "kd": "cade",
+        "cmg": "comigo",
+        "ctg": "contigo",
+        "dnv": "de novo",
+        "pf": "por favor",
+        "pfv": "por favor",
+        "q": "que",
+        "ke": "que",
     }
+
     palavras = texto.split()
     novas = []
     for p in palavras:
         novas.append(juntadas.get(p, p))
-    texto = " ".join(novas)
+    return " ".join(novas)
 
-    return texto
 
 # ==============================
-# SIMILARIDADE (Jaccard)
+# CAMADA 2 — CORREÇÃO DE DIGITAÇÃO
 # ==============================
 
-def limpa_frase(frase):
-    """Remove pontuação e normaliza juntadas (para comparar palavras)."""
-    # Reutiliza a normalização completa (já trata juntadas)
-    return normalizar(frase)
+def montar_vocabulario():
+    """
+    Junta todas as palavras que existem nas perguntas do banco.
+    Isso vira o "dicionário" para corrigir erros de digitação.
+    """
+    vocab = set()
+    for pergunta in BASE.keys():
+        for palavra in pergunta.split():
+            if len(palavra) >= 2:  # ignora letras soltas
+                vocab.add(palavra)
+    return vocab
 
+
+def corrigir_palavra(palavra, vocabulario):
+    """
+    Se a palavra não existe no vocabulário, tenta achar
+    a mais parecida (erro de digitação).
+    Usa difflib — compara letra a letra.
+    Só aceita candidato com tamanho parecido (evita mihora→mira).
+    """
+    if palavra in vocabulario:
+        return palavra  # já está correta
+
+    if len(palavra) < 3:
+        return palavra  # palavras muito curtas não vale corrigir
+
+    candidatos = difflib.get_close_matches(
+        palavra,
+        vocabulario,
+        n=3,          # pega os 3 melhores e filtra
+        cutoff=0.75
+    )
+
+    for cand in candidatos:
+        # só aceita se o tamanho for parecido (diferença máxima de 2 letras)
+        if abs(len(cand) - len(palavra)) <= 1:
+            return cand
+
+    return palavra  # não achou parecida boa, deixa como está
+
+
+def corrigir_digitacao(texto):
+    """
+    Camada 2: corrige cada palavra do texto
+    comparando com o vocabulário do banco.
+    Ex: "pyton" → "python", "valarant" → "valorant"
+    """
+    vocabulario = montar_vocabulario()
+    palavras = texto.split()
+    corrigidas = [corrigir_palavra(p, vocabulario) for p in palavras]
+    return " ".join(corrigidas)
+
+
+# ==============================
+# CAMADA 3 — BUSCA POR SIMILARIDADE
+# ==============================
 
 def jaccard(texto1, texto2):
-    """
-    Similaridade de Jaccard entre duas frases.
-    Retorna um número de 0.0 (diferentes) a 1.0 (iguais).
-    """
-    palavras1 = set(limpa_frase(texto1).split())
-    palavras2 = set(limpa_frase(texto2).split())
-
-    if not palavras1 or not palavras2:
+    """Similaridade por palavras em comum (0.0 a 1.0)."""
+    p1 = set(texto1.split())
+    p2 = set(texto2.split())
+    if not p1 or not p2:
         return 0.0
+    return len(p1 & p2) / len(p1 | p2)
 
-    intersecao = palavras1 & palavras2   # palavras em comum
-    uniao = palavras1 | palavras2        # todas as palavras juntas
 
-    return len(intersecao) / len(uniao)
+def similaridade_letras(texto1, texto2):
+    """
+    Similaridade letra a letra (difflib).
+    Bom para frases curtas e erros de digitação.
+    """
+    return difflib.SequenceMatcher(None, texto1, texto2).ratio()
 
 
 def busca_por_similaridade(texto):
     """
-    Percorre toda a base e devolve a melhor resposta
-    se a similaridade for >= LIMIAR_SIMILARIDADE.
-    Caso contrário devolve None.
+    Camada 3: procura a pergunta mais parecida no banco.
+    Usa Jaccard E similaridade de letras, cada um com seu limiar.
     """
-    melhor_score = 0.0
-    melhor_resposta = None
+    melhor_j = 0.0
+    melhor_l = 0.0
+    resp_j = None
+    resp_l = None
 
     for pergunta_base, respostas in BASE.items():
-        score = jaccard(texto, pergunta_base)
+        score_j = jaccard(texto, pergunta_base)
+        score_l = similaridade_letras(texto, pergunta_base)
 
-        if score > melhor_score:
-            melhor_score = score
-            melhor_resposta = random.choice(respostas)
+        if score_j > melhor_j:
+            melhor_j = score_j
+            resp_j = random.choice(respostas)
 
-    if melhor_score >= LIMIAR_SIMILARIDADE:
-        return melhor_resposta
+        if score_l > melhor_l:
+            melhor_l = score_l
+            resp_l = random.choice(respostas)
+
+    # Cada score só vale se passar no SEU limiar
+    if melhor_j >= LIMIAR_JACCARD:
+        return resp_j
+
+    if melhor_l >= LIMIAR_DIGITACAO:
+        return resp_l
 
     return None
+
+
+def interpretar(texto):
+    """
+    Pipeline completo do interpretador:
+    1) normaliza
+    2) corrige digitação
+    3) devolve o texto pronto para buscar
+    """
+    texto = normalizar(texto)
+    texto = corrigir_digitacao(texto)
+    return texto
+
 
 # ==============================
 # SAUDAÇÕES
@@ -186,58 +290,49 @@ def carregar_base():
         open(ARQUIVO_BANCO, "w", encoding="utf-8").close()
     return base
 
-# ==============================
-# BASE EM MEMÓRIA
-# ==============================
-
 BASE = carregar_base()
 
 # ==============================
-# BUSCAR RESPOSTA (console)
+# BUSCAR RESPOSTA
 # ==============================
 
 def buscaResposta(texto):
     global BASE
 
-    pergunta = normalizar(texto)
+    # Roda o interpretador (normaliza + corrige digitação)
+    pergunta = interpretar(texto)
 
-    # Encerrar chatbot
     if pergunta in ["tchau", "adeus", "ate logo"]:
         return "fim"
 
-    # 1) Tentativa de match EXATO
+    # 1) Match exato (depois da correção)
     if pergunta in BASE:
         return random.choice(BASE[pergunta])
 
-    # 2) Tentativa por SIMILARIDADE (Jaccard)
-    resposta_similar = busca_por_similaridade(texto)
-    if resposta_similar is not None:
-        return resposta_similar
+    # 2) Match por similaridade
+    resposta = busca_por_similaridade(pergunta)
+    if resposta is not None:
+        return resposta
 
-    # 3) Não encontrou → aprende
+    # 3) Não sabe → aprende
     print("Maria: Não sei responder isso.")
     resposta = input("Qual deveria ser a resposta? ")
     salva_sugestao(texto, resposta)
     return "Obrigado! Aprendi uma nova resposta."
 
-# ==============================
-# BUSCAR RESPOSTA (GUI)
-# ==============================
 
 def buscaResposta_GUI(texto):
     global BASE
 
-    pergunta = normalizar(texto)
+    pergunta = interpretar(texto)
 
-    # 1) Match exato
     if pergunta in BASE:
         return random.choice(BASE[pergunta])
 
-    # 2) Match por similaridade
-    return busca_por_similaridade(texto)
+    return busca_por_similaridade(pergunta)
 
 # ==============================
-# SALVAR NOVA RESPOSTA
+# SALVAR / EXIBIR
 # ==============================
 
 def salva_sugestao(pergunta, resposta):
@@ -249,9 +344,6 @@ def salva_sugestao(pergunta, resposta):
         BASE[pergunta] = []
     BASE[pergunta].append(resposta)
 
-# ==============================
-# EXIBIR RESPOSTA
-# ==============================
 
 def exibeResposta(resposta, nome):
     if resposta == "fim":
@@ -259,6 +351,7 @@ def exibeResposta(resposta, nome):
         return "fim"
     print(f"{nome}: {resposta}")
     return "continua"
+
 
 def exibeResposta_GUI(resposta, nome):
     if resposta == "fim":
